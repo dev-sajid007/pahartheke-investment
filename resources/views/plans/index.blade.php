@@ -38,6 +38,9 @@
                         <td>{{ $plan->title }}</td>
                         <td>{{ $plan->subtitle }}</td>
                         <td>
+                            <a href="{{ route('public.plan.show', $plan) }}" class="btn btn-sm btn-success">
+                                <i class="fas fa-eye"></i> Details
+                            </a>
                             <a href="{{ route('plans.edit', $plan) }}" class="btn btn-sm btn-info">
                                 <i class="fas fa-edit"></i>
                             </a>

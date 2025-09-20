@@ -16,13 +16,16 @@ Route::get('/', function () {
     $faqs = Faq::latest()->paginate(6);
 
 
-    return view('welcome', compact('tractions','plans','faqs'));
+    return view('welcome', compact('tractions', 'plans', 'faqs'));
 })->name('home');
 
 Route::get('/our-traction', [TractionController::class, 'show'])->name('tractions.show');
+Route::get('/plans/{plan}/details', [PlanController::class, 'publicShow'])->name('public.plan.show');
 
+use App\Models\Investment;
 Route::get('/dashboard', function () {
-    return view('dashboard');
+    $recentInvestments = Investment::with('plan')->latest()->take(10)->get();
+    return view('dashboard', compact('recentInvestments'));
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {
@@ -34,6 +37,9 @@ Route::middleware('auth')->group(function () {
 Route::get('/faqs', [FaqController::class, 'show'])->name('faqs.show');
 
 Route::resource('tractions', TractionController::class)->middleware(['auth']);
+Route::post('/investments', [App\Http\Controllers\InvestmentController::class, 'store'])->name('investments.store');
+Route::get('/investments', [App\Http\Controllers\InvestmentController::class, 'index'])->name('investments.index');
+Route::get('/investments/{investment}', [App\Http\Controllers\InvestmentController::class, 'show'])->name('investments.show');
 Route::resource('plans', PlanController::class)->middleware(['auth']);
 Route::resource('faqs', FaqController::class)->middleware(['auth']);
 Route::resource('plans', PlanController::class)->middleware(['auth']);

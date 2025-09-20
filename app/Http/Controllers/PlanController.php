@@ -55,4 +55,12 @@ class PlanController extends Controller
         return redirect()->route('plans.index')
             ->with('success', 'Plan deleted successfully.');
     }
+    /**
+     * Show a public plan details page with investment form.
+     */
+    public function publicShow(Plan $plan)
+    {
+        $allPlans = Plan::all();
+        return view('pages.plan-show', compact('plan', 'allPlans'));
+    }
 }
