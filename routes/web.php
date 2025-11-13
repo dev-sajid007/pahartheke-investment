@@ -4,6 +4,7 @@ use App\Http\Controllers\FaqController;
 use App\Http\Controllers\PlanController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\TractionController;
+use App\Http\Controllers\HeroSectionController;
 use App\Models\Faq;
 use App\Models\Plan;
 use App\Models\Traction;
@@ -45,6 +46,15 @@ Route::resource('plans', PlanController::class)->middleware(['auth']);
 Route::resource('faqs', FaqController::class)->middleware(['auth']);
 Route::resource('plans', PlanController::class)->middleware(['auth']);
 
-Route::get('sections/index', [App\Http\Controllers\HeroSectionController::class, 'index']) ->name('home');
+Route::get('sections/index', [App\Http\Controllers\HeroSectionController::class, 'index'])->name('sections.index');
+Route::get('sections/create', [App\Http\Controllers\HeroSectionController::class, 'create'])->name('sections.create');
+Route::post('sections', [App\Http\Controllers\HeroSectionController::class, 'store'])->name('sections.store');
+
+
+// Edit route — এখানে {hero} মানে ডাইনামিক ID
+Route::get('sections/{id}/edit', [HeroSectionController::class, 'edit'])->name('sections.edit');
+Route::put('sections/{id}', [HeroSectionController::class, 'update'])->name('sections.update');
+
+Route::delete('sections/{hero_section}', [App\Http\Controllers\HeroSectionController::class, 'destroy'])->name('sections.destroy');
 
 require __DIR__ . '/auth.php';

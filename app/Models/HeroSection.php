@@ -6,5 +6,13 @@ use Illuminate\Database\Eloquent\Model;
 
 class HeroSection extends Model
 {
-    //
+    protected $fillable = [
+    'title',
+    'subtitle',
+    'description',
+    'image',
+    'button_text',
+    'buttonlink',
+];
+
 }
