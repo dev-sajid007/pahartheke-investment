@@ -9,6 +9,7 @@ use App\Models\Plan;
 use App\Models\Traction;
 use Illuminate\Support\Facades\Route;
 
+
 Route::get('/', function () {
 
     $tractions = Traction::latest()->paginate(6);
@@ -43,5 +44,7 @@ Route::get('/investments/{investment}', [App\Http\Controllers\InvestmentControll
 Route::resource('plans', PlanController::class)->middleware(['auth']);
 Route::resource('faqs', FaqController::class)->middleware(['auth']);
 Route::resource('plans', PlanController::class)->middleware(['auth']);
+
+Route::get('sections/index', [App\Http\Controllers\HeroSectionController::class, 'index']) ->name('home');
 
 require __DIR__ . '/auth.php';
