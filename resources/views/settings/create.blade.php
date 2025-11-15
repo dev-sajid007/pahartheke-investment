@@ -1,47 +1,47 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="max-w-3xl mx-auto mt-10 bg-white p-8 rounded-xl shadow">
-    <h2 class="text-3xl font-bold mb-6">Add General Setting</h2>
-
-    <form action="{{ route('settings.store') }}" method="POST" enctype="multipart/form-data">
+<div class="container mx-auto py-6">
+    <h2 class="text-2xl font-bold mb-4">Add New Setting</h2>
+    <form action="{{ route('settings.store') }}" method="POST" enctype="multipart/form-data" class="space-y-4">
         @csrf
-        <div class="space-y-4">
-            @foreach(['site_name','details','email','phone','address','facebook','instagram','whatsapp'] as $field)
-                <div>
-                    <label class="block font-medium capitalize">{{ str_replace('_',' ',$field) }}</label>
-                    @if($field == 'details')
-                        <textarea name="{{ $field }}" class="w-full border px-3 py-2 rounded">{{ old($field) }}</textarea>
-                    @else
-                        <input type="{{ $field=='email'?'email':'text' }}" name="{{ $field }}" class="w-full border px-3 py-2 rounded" value="{{ old($field) }}">
-                    @endif
-                </div>
-            @endforeach
-
-            <div>
-                <label class="block font-medium">Logo</label>
-                <input type="file" name="logo" id="logo" class="w-full border px-3 py-2 rounded">
-                <img id="logoPreview" class="mt-2 w-32 h-32 object-contain hidden" />
-            </div>
-
-            <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">Save</button>
+         <label class="block mb-2">Site Name</label>
+        <input type="text" name="site_name" placeholder="Site Name" class="border px-3 py-2 w-full" required>
+         <label class="block mb-2">Details</label>
+        <textarea name="details" placeholder="Details" class="border px-3 py-2 w-full"></textarea>
+       <label class="block mb-2">Email</label>
+        <input type="email" name="email" placeholder="Email" class="border px-3 py-2 w-full">
+         <label class="block mb-2">Phone</label>
+        <input type="text" name="phone" placeholder="Phone" class="border px-3 py-2 w-full">
+        <label class="block mb-2">Address</label>
+        <input type="text" name="address" placeholder="Address" class="border px-3 py-2 w-full">
+        <label class="block mb-2">Facebook</label>
+        <input type="text" name="facebook" placeholder="Facebook" class="border px-3 py-2 w-full">
+        <label class="block mb-2">Instagram</label>
+        <input type="text" name="instagram" placeholder="Instagram" class="border px-3 py-2 w-full">
+        <label class="block mb-2">WhatsApp</label>
+        <input type="text" name="whatsapp" placeholder="WhatsApp" class="border px-3 py-2 w-full">
+        
+        <div>
+            <label class="block mb-2">Logo</label>
+            <input type="file" name="logo" id="logo" class="border px-3 py-2 w-full" accept="image/*">
+            <img id="preview" class="mt-2 w-32 h-32 object-cover hidden">
         </div>
+
+       <button type="submit" class="bg-blue-500 text-black border border-black px-4 py-2 rounded mt-4">Save</button>
+
     </form>
 </div>
 
 <script>
-    const logoInput = document.getElementById('logo');
-    const logoPreview = document.getElementById('logoPreview');
+    const logo = document.getElementById('logo');
+    const preview = document.getElementById('preview');
 
-    logoInput.addEventListener('change', function(){
+    logo.addEventListener('change', function() {
         const file = this.files[0];
-        if(file){
-            const reader = new FileReader();
-            reader.onload = function(e){
-                logoPreview.setAttribute('src', e.target.result);
-                logoPreview.classList.remove('hidden');
-            }
-            reader.readAsDataURL(file);
+        if (file) {
+            preview.src = URL.createObjectURL(file);
+            preview.classList.remove('hidden');
         }
     });
 </script>

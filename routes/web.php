@@ -69,7 +69,7 @@ Route::prefix('settings')->group(function() {
     Route::get('create', [GeneralSettingsController::class, 'create'])->name('settings.create');
     Route::post('store', [GeneralSettingsController::class, 'store'])->name('settings.store');
     Route::get('edit/{id}', [GeneralSettingsController::class, 'edit'])->name('settings.edit');
-    Route::put('update/{id}', [GeneralSettingsController::class, 'update'])->name('settings.update');
+   Route::put('update/{id}', [GeneralSettingsController::class, 'update'])->name('settings.update');
     Route::delete('destroy/{id}', [GeneralSettingsController::class, 'destroy'])->name('settings.destroy');
 });
 
