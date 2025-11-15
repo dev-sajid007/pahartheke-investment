@@ -5,6 +5,9 @@ use App\Http\Controllers\PlanController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\TractionController;
 use App\Http\Controllers\HeroSectionController;
+use App\Http\Controllers\GeneralSettingsController;
+
+
 use App\Models\Faq;
 use App\Models\Plan;
 use App\Models\Traction;
@@ -56,5 +59,22 @@ Route::get('sections/{id}/edit', [HeroSectionController::class, 'edit'])->name('
 Route::put('sections/{id}', [HeroSectionController::class, 'update'])->name('sections.update');
 
 Route::delete('sections/{hero_section}', [App\Http\Controllers\HeroSectionController::class, 'destroy'])->name('sections.destroy');
+
+
+
+
+
+Route::prefix('settings')->group(function() {
+    Route::get('index', [GeneralSettingsController::class, 'index'])->name('settings.index');
+    Route::get('create', [GeneralSettingsController::class, 'create'])->name('settings.create');
+    Route::post('store', [GeneralSettingsController::class, 'store'])->name('settings.store');
+    Route::get('edit/{id}', [GeneralSettingsController::class, 'edit'])->name('settings.edit');
+    Route::put('update/{id}', [GeneralSettingsController::class, 'update'])->name('settings.update');
+    Route::delete('destroy/{id}', [GeneralSettingsController::class, 'destroy'])->name('settings.destroy');
+});
+
+
+
+
 
 require __DIR__ . '/auth.php';

@@ -2,7 +2,7 @@
 
 @section('content')
 <div class="max-w-4xl mx-auto mt-10 bg-white p-6 rounded-xl shadow">
-    <h2 class="text-2xl font-bold mb-6">Add Hero Section</h2>
+    <h2 class="text-2xl font-bold mb-6">Add General Setting</h2>
 
     @if($errors->any())
         <div class="mb-4 p-3 bg-red-100 text-red-700 rounded">
@@ -14,61 +14,65 @@
         </div>
     @endif
 
-    <form action="{{ route('sections.store') }}" method="POST" enctype="multipart/form-data" class="space-y-4">
+    <form action="{{ route('generalsetting.store') }}" method="POST" enctype="multipart/form-data" class="space-y-4">
         @csrf
-        
-        <label class="block mb-2 font-medium">Title</label>
-        <input type="text" name="title" placeholder="Title" class="w-full border px-3 py-2 rounded" required>
-       
-        <label class="block mb-2 font-medium">Subtitle</label>
-        <input type="text" name="subtitle" placeholder="Subtitle" class="w-full border px-3 py-2 rounded">
-      
-        <label class="block mb-2 font-medium">Description</label>
-        <textarea name="description" placeholder="Description" class="w-full border px-3 py-2 rounded" rows="4"></textarea>
 
-       
-
-        <!-- Button Text and Button Link BELOW image -->
-          <label class="block mb-2 font-medium">Button Text</label>
-        <input type="text" name="button_text" placeholder="Button Text" class="w-full border px-3 py-2 rounded">
-        
-        <label class="block mb-2 font-medium">Button Link</label>
-        <input type="url" name="buttonlink" placeholder="Button Link" class="w-full border px-3 py-2 rounded">
-
-
-
-        <!-- Image Upload + Preview -->
+        <!-- Logo Upload + Preview -->
         <div>
-            <label class="block mb-2 font-medium">Image</label>
-            <input type="file" name="image" id="imageInput" class="w-full border px-3 py-2 rounded">
-            <img id="imagePreview" src="#" class="mt-4 max-h-48 hidden rounded" alt="Image Preview">
+            <label class="block mb-2 font-medium">Logo</label>
+            <input type="file" name="logo" id="logoInput" class="w-full border px-3 py-2 rounded">
+            <img id="logoPreview" src="#" class="mt-4 max-h-48 hidden rounded" alt="Logo Preview">
         </div>
 
+        <label class="block mb-2 font-medium">Site Name</label>
+        <input type="text" name="sitename" placeholder="Site Name" class="w-full border px-3 py-2 rounded" required>
+
+        <label class="block mb-2 font-medium">Details</label>
+        <textarea name="details" placeholder="Details" class="w-full border px-3 py-2 rounded" rows="3"></textarea>
+
+        <label class="block mb-2 font-medium">Email</label>
+        <input type="email" name="email" placeholder="Email" class="w-full border px-3 py-2 rounded">
+
+        <label class="block mb-2 font-medium">Phone</label>
+        <input type="text" name="phone" placeholder="Phone" class="w-full border px-3 py-2 rounded">
+
+        <label class="block mb-2 font-medium">Address</label>
+        <input type="text" name="address" placeholder="Address" class="w-full border px-3 py-2 rounded">
+
+        <label class="block mb-2 font-medium">Facebook</label>
+        <input type="text" name="facebook" placeholder="Facebook" class="w-full border px-3 py-2 rounded">
+
+        <label class="block mb-2 font-medium">Instagram</label>
+        <input type="text" name="instagram" placeholder="Instagram" class="w-full border px-3 py-2 rounded">
+
+        <label class="block mb-2 font-medium">WhatsApp</label>
+        <input type="text" name="whatsapp" placeholder="WhatsApp" class="w-full border px-3 py-2 rounded">
 
         <div class="mt-4">
-        <button type="submit" class="border border-black text-black bg-gray-100 px-6 py-2 rounded hover:bg-black hover:text-white transition">Save</button>
+            <button type="submit" class="border border-black text-black bg-gray-100 px-6 py-2 rounded hover:bg-black hover:text-white transition">
+                Save
+            </button>
+        </div>
     </form>
 </div>
 
- 
-
 <script>
-    // Image preview script
-    const imageInput = document.getElementById('imageInput');
-    const imagePreview = document.getElementById('imagePreview');
+    // Logo preview script
+    const logoInput = document.getElementById('logoInput');
+    const logoPreview = document.getElementById('logoPreview');
 
-    imageInput.addEventListener('change', function() {
+    logoInput.addEventListener('change', function() {
         const file = this.files[0];
         if (file) {
             const reader = new FileReader();
             reader.onload = function(e) {
-                imagePreview.src = e.target.result;
-                imagePreview.classList.remove('hidden');
+                logoPreview.src = e.target.result;
+                logoPreview.classList.remove('hidden');
             }
             reader.readAsDataURL(file);
         } else {
-            imagePreview.src = '#';
-            imagePreview.classList.add('hidden');
+            logoPreview.src = '#';
+            logoPreview.classList.add('hidden');
         }
     });
 </script>
