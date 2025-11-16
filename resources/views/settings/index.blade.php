@@ -13,18 +13,7 @@
             </a>
         @endif
 
-    </div>
-</div>
-
-
-    <!-- Success Message -->
-    @if(session('success'))
-        <div class="bg-green-200 text-green-800 p-3 mb-4 rounded shadow">
-            {{ session('success') }}
-        </div>
-    @endif
-
-    <!-- Settings Table -->
+          <!-- Settings Table -->
     <div class="overflow-x-auto border border-gray-200 rounded">
         <table class="min-w-full divide-y divide-gray-200">
             <thead class="bg-gray-100">
@@ -67,7 +56,7 @@
                         <form action="{{ route('settings.destroy', $setting->id) }}" method="POST" onsubmit="return confirm('Are you sure?')" class="inline-block">
                          @csrf
                          @method('DELETE')
-                              <button type="submit" class="bg-black text-black px-3 py-1 rounded hover:bg-gray-800 transition">Delete</button>
+                              <button type="submit" class=" text-black px-3 py-1 rounded hover:bg-gray-800 transition">Delete</button>
                         </form>
                     </td>
                 </tr>
@@ -79,5 +68,18 @@
             </tbody>
         </table>
     </div>
+
+    </div>
+</div>
+
+
+    <!-- Success Message -->
+    @if(session('success'))
+        <div class="bg-green-200 text-green-800 p-3 mb-4 rounded shadow">
+            {{ session('success') }}
+        </div>
+    @endif
+
+  
 </div>
 @endsection

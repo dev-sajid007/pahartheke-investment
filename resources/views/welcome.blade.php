@@ -7,11 +7,13 @@
         <div class="container">
             <div class="row gy-4 align-items-center">
                 <div class="col-lg-7 text-center text-lg-start">
-                    <h1 class="display-5">Why Invest in Pahar Theke?</h1>
-                    <p class="lead text-white-50">Ethical, Shariah-compliant investment opportunities across sustainable
-                        agri-processing, retail and distribution — trusted by consumers and producers alike.</p>
+                    <h1 class="display-5">{{ $heroSection->title }}</h1>
+                    <p class="lead text-white-50">{{ $heroSection->subtitle }}</p>
 
-                    <ul class="lead-list">
+
+                    <p class="lead text-white-50">{{ $heroSection->description }}</p>
+
+                    {{-- <ul class="lead-list">
                         <li><i class="fa-solid fa-check-circle"></i> Halal Investment — Ethical, Shariah-compliant
                             opportunities</li>
                         <li><i class="fa-solid fa-check-circle"></i> Safe Food Market Leader — Strong consumer trust &
@@ -20,40 +22,20 @@
                             investments</li>
                         <li><i class="fa-solid fa-check-circle"></i> Sustainable & Zero-Emission Agro Processing Hub —
                             The future of food production</li>
-                    </ul>
+                    </ul> --}}
 
                     <div class="mt-4">
-                        <a class="btn btn-cta btn-lg me-2" href="#plans"><i
-                                class="fa-solid fa-hand-holding-dollar me-2"></i> Express Interest to Invest</a>
+                        <a class="btn btn-cta btn-lg me-2" href="{{ $heroSection->buttonlink}}"><i
+                                class="fa-solid fa-hand-holding-dollar me-2"></i> {{ $heroSection->button_text }}</a>
                         <a class="btn btn-outline-light btn-lg" href="#facts"><i class="fa-solid fa-file-lines me-2"></i>
                             View Fact Sheet</a>
                     </div>
                 </div>
 
                 <div class="col-lg-5">
-                    <div class="card shadow-sm">
-                        <div class="card-body">
-                            <h5 class="card-title mb-3">Quick Highlights</h5>
-                            <div class="row">
-                                <div class="col-6">
-                                    <small class="text-muted">Avg Basket</small>
-                                    <div class="h5">BDT 1150</div>
-                                </div>
-                                <div class="col-6">
-                                    <small class="text-muted">Orders / Day</small>
-                                    <div class="h5">600+</div>
-                                </div>
-                                <div class="col-6 mt-3">
-                                    <small class="text-muted">Unique Customers</small>
-                                    <div class="h5">200k+</div>
-                                </div>
-                                <div class="col-6 mt-3">
-                                    <small class="text-muted">Outlets</small>
-                                    <div class="h5">18</div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                  
+                        <img style="width: 450px;height:250px"  src="{{asset( "storage/".$heroSection->image) }}" alt="">
+                   
                 </div>
             </div> <!-- row -->
         </div>
@@ -187,9 +169,9 @@
                     <div class="accordion-item">
                         <h2 class="accordion-header" id="headingOne">
                             <button class="accordion-button" type="button" data-bs-toggle="collapse"
-                                data-bs-target="#collapseOne">{{ $item->question }}</button>
+                                data-bs-target="#collapse{{$item->id}}">{{ $item->question }}</button>
                         </h2>
-                        <div id="collapseOne" class="accordion-collapse collapse show" data-bs-parent="#faqAccordion">
+                        <div id="collapse{{$item->id}}" class="accordion-collapse collapse show" data-bs-parent="#faqAccordion">
                             <div class="accordion-body">
                                 Khaas Food combines a Shariah-compliant model, proven market demand, diversified
                                 projects

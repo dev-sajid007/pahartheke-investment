@@ -27,6 +27,12 @@
                     <x-nav-link :href="route('faqs.index')" :active="request()->routeIs('faqs.index')">
                         <i class="fas fa-cog me-2"></i>{{ __('Manage FAQs') }}
                     </x-nav-link>
+                    <x-nav-link :href="route('sections.index')" :active="request()->routeIs('sections.index')">
+                        <i class="fas fa-cog me-2"></i>{{ __('Manage Sections') }}
+                    </x-nav-link>
+                    <x-nav-link :href="route('settings.index')" :active="request()->routeIs('settings.index')">
+                        <i class="fas fa-cog me-2"></i>{{ __('Manage Settings') }}
+                    </x-nav-link>
                 </div>
             </div>
 

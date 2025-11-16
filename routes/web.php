@@ -9,6 +9,7 @@ use App\Http\Controllers\GeneralSettingsController;
 
 
 use App\Models\Faq;
+use App\Models\HeroSection;
 use App\Models\Plan;
 use App\Models\Traction;
 use Illuminate\Support\Facades\Route;
@@ -19,9 +20,9 @@ Route::get('/', function () {
     $tractions = Traction::latest()->paginate(6);
     $plans = Plan::latest()->paginate(6);
     $faqs = Faq::latest()->paginate(6);
+    $heroSection = HeroSection::first();
 
-
-    return view('welcome', compact('tractions', 'plans', 'faqs'));
+    return view('welcome', compact('tractions', 'plans', 'faqs','heroSection'));
 })->name('home');
 
 Route::get('/our-traction', [TractionController::class, 'show'])->name('tractions.show');

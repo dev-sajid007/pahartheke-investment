@@ -17,8 +17,6 @@
     <form action="{{ route('sections.store') }}" method="POST" enctype="multipart/form-data" class="space-y-4">
         @csrf
 
-       
-
         <label class="block mb-2 font-medium">Title</label>
         <input type="text" name="title" placeholder="Title" class="w-full border px-3 py-2 rounded" required>
 

@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Khaas Food — Investment</title>
+    <title>Pahar Theke — Investment</title>
 
     <!-- Bootstrap 5 -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -166,13 +166,13 @@
     <!-- NAV -->
     <nav class="navbar navbar-expand-lg navbar-light bg-white border-bottom">
         <div class="container">
-            <a class="navbar-brand" href="#">Pahar<span style="color:var(--green)">Theke</span></a>
+            <a class="navbar-brand" href="{{route('home')}}">Pahar<span style="color:var(--green)">Theke</span></a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMain">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navMain">
                 <ul class="navbar-nav ms-auto align-items-lg-center">
-                    <li class="nav-item"><a class="nav-link" href="#">Dashboard</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{{route('home')}}">Home</a></li>
                     <li class="nav-item"><a class="nav-link" href="#plans">Investment Plans</a></li>
                     <li class="nav-item"><a class="nav-link" href="#facts">Fact Sheet</a></li>
                     <li class="nav-item"><a class="nav-link" href="#faq">FAQ</a></li>
@@ -185,21 +185,28 @@
 
     @yield('content')
 
+
+    @php
+        $settings = \App\Models\GeneralSetting::first();
+        //dd($settings);
+
+    @endphp
+
     <!-- CONTACT / FOOTER -->
     <footer id="contact">
         <div class="container">
             <div class="row py-4 gy-4">
                 <!-- Column 1: Brand & Contact -->
                 <div class="col-md-4">
-                    <h5 class="mb-2" style="color:var(--green-dark);font-weight:700;">Pahar<span style="color:var(--green)">Theke</span></h5>
-                    <p class="text-muted mb-2">Ethical, Shariah-compliant agri-tech investments for a sustainable future.</p>
-                    <p class="mb-1"><i class="fa-solid fa-phone me-2 text-success"></i> <a href="tel:09612000255" class="text-decoration-none text-dark">09612000255</a></p>
-                    <p class="mb-0"><i class="fa-solid fa-envelope me-2 text-success"></i> <a href="mailto:investment@khaasfood.com" class="text-decoration-none text-dark">investment@khaasfood.com</a></p>
+                    <h5 class="mb-2" style="color:var(--green-dark);font-weight:700;">{{$settings->site_name}}</span></h5>
+                    <p class="text-muted mb-2">{{$settings->details}}</p>
+                    <p class="mb-1"><i class="fa-solid fa-phone me-2 text-success"></i> <a href="tel:09612000255" class="text-decoration-none text-dark">{{$settings->phone}}</a></p>
+                    <p class="mb-0"><i class="fa-solid fa-envelope me-2 text-success"></i> <a href="mailto:investment@khaasfood.com" class="text-decoration-none text-dark">{{$settings->email}}</a></p>
                 </div>
                 <!-- Column 2: Office & Links -->
                 <div class="col-md-4">
                     <h6 class="mb-2" style="color:var(--accent);font-weight:600;">Head Office</h6>
-                    <p class="small text-muted mb-3">Floor - 8, 15/1/2, Biswas Shawpnil, Jiggata, Dhaka-1209</p>
+                    <p class="small text-muted mb-3">{{$settings->address}}</p>
                     <div>
                         <a href="#plans" class="text-decoration-none me-3 text-success">Investment Plans</a>
                         <a href="#facts" class="text-decoration-none me-3 text-success">Fact Sheet</a>
@@ -208,7 +215,7 @@
                 </div>
                 <!-- Column 3: App & Copyright -->
                 <div class="col-md-4 text-md-end">
-                    <a class="btn btn-success mb-3" href="#"><i class="fa-brands fa-google-play me-2"></i>Get App</a>
+                    {{-- <a class="btn btn-success mb-3" href="#"><i class="fa-brands fa-google-play me-2"></i>Get App</a> --}}
                     <div class="mt-2 small text-muted">&copy; {{ date('Y') }} PaharTheke. All rights reserved.</div>
                     <div class="mt-2">
                         <a href="#" class="text-success me-2"><i class="fa-brands fa-facebook fa-lg"></i></a>
