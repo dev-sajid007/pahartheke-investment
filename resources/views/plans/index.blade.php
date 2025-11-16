@@ -29,6 +29,7 @@
                     <tr>
                         <th>Title</th>
                         <th>Subtitle</th>
+                        <th>Description</th> <!-- NEW -->
                         <th>Actions</th>
                     </tr>
                 </thead>
@@ -37,6 +38,7 @@
                     <tr>
                         <td>{{ $plan->title }}</td>
                         <td>{{ $plan->subtitle }}</td>
+                        <td>{{ Str::limit(strip_tags($plan->description), 250) }}</td>  <!-- NEW -->
                         <td>
                             <a href="{{ route('public.plan.show', $plan) }}" class="btn btn-sm btn-success">
                                 <i class="fas fa-eye"></i> Details
@@ -56,6 +58,7 @@
                     @endforeach
                 </tbody>
             </table>
+
             {{ $plans->links() }}
         </div>
     </div>

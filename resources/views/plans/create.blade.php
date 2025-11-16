@@ -25,14 +25,20 @@
                         <span class="invalid-feedback">{{ $message }}</span>
                     @enderror
                 </div>
+
                 <div class="form-group mb-3">
                     <label>Subtitle</label>
                     <input type="text" name="subtitle" class="form-control" value="{{ old('subtitle') }}">
                 </div>
+
                 <div class="form-group mb-3">
                     <label>Description</label>
-                    <input type="hidden" name="description" id="summernote"/>
+                    <textarea name="description" class="form-control @error('description') is-invalid @enderror" rows="5">{{ old('description') }}</textarea>
+                    @error('description')
+                        <span class="invalid-feedback">{{ $message }}</span>
+                    @enderror
                 </div>
+
                 <div class="mt-3">
                     <button type="submit" class="btn btn-primary">
                         <i class="fas fa-save"></i> Save
