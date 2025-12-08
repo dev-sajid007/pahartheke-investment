@@ -3,14 +3,26 @@
 
 @section('content')
     <!-- HERO -->
-    <header class="hero">
-        <!-- Video Section -->
-        <div class="lg:w-5/12">
-            <video class="w-full h-auto rounded-lg shadow-lg" controls>
-                <source src="{{ asset('storage/'video.mp4 . $heroSection->video) }}" type="video/mp4">
-                Your browser does not support the video tag.
+    <header>
+        <section class="relative h-screen w-full overflow-hidden">
+
+            <!-- Background Video -->
+            <video class="absolute inset-0 w-full h-full object-cover" autoplay muted loop playsinline>
+                <source src="{{ asset('video.mp4') }}" type="video/mp4" />
             </video>
-        </div>
+
+            <!-- Blur + Dark Overlay -->
+            <div class="absolute inset-0 bg-black/40 backdrop-blur-md"></div>
+
+            <!-- Content On Top -->
+            <div class="relative z-10 flex items-center justify-center h-full">
+                <h1 class="text-white text-5xl font-bold">
+                    Pahar Theke Investment
+                </h1>
+            </div>
+
+        </section>
+
     </header>
 
     <!-- TRACTION -->
@@ -31,11 +43,6 @@
                 @empty
                     <p class="text-center">No Traction</p>
                 @endforelse
-
-
-
-
-
             </div>
         </div>
     </section>
@@ -47,8 +54,6 @@
 
             @forelse ($plans as $item)
                 <div class="list-group">
-
-
                     <div
                         class="list-group-item investment d-flex flex-column flex-md-row justify-content-between align-items-start">
                         <div>
@@ -76,7 +81,7 @@
     </section>
 
     <!-- FACT SHEET -->
-    <section id="facts" class="py-5">
+    {{-- <section id="facts" class="py-5">
         <div class="container">
             <h2 class="text-center mb-4">Fact Sheet Regarding Investment</h2>
             <div class="row g-3">
@@ -129,7 +134,7 @@
                 </div>
             </div>
         </div>
-    </section>
+    </section> --}}
 
     <!-- FAQ -->
     <section id="faq" class="py-5 bg-light">
@@ -141,9 +146,10 @@
                     <div class="accordion-item">
                         <h2 class="accordion-header" id="headingOne">
                             <button class="accordion-button" type="button" data-bs-toggle="collapse"
-                                data-bs-target="#collapse{{$item->id}}">{{ $item->question }}</button>
+                                data-bs-target="#collapse{{ $item->id }}">{{ $item->question }}</button>
                         </h2>
-                        <div id="collapse{{$item->id}}" class="accordion-collapse collapse show" data-bs-parent="#faqAccordion">
+                        <div id="collapse{{ $item->id }}" class="accordion-collapse collapse show"
+                            data-bs-parent="#faqAccordion">
                             <div class="accordion-body">
                                 Khaas Food combines a Shariah-compliant model, proven market demand, diversified
                                 projects
@@ -158,3 +164,31 @@
         </div>
     </section>
 @endsection
+
+@push('scripts')
+    <script>
+        const video = document.getElementById('bgVideo');
+        const btn = document.getElementById('toggleBtn');
+        const icon = document.getElementById('icon');
+        const btnText = document.getElementById('btnText');
+
+        // start muted autoplay if allowed
+        // button toggles muted playback
+        btn.addEventListener('click', () => {
+            if (video.paused) {
+                video.play().catch(() => {
+                    /* autoplay may be blocked if not user-initiated */
+                });
+                btn.setAttribute('aria-pressed', 'true');
+                btnText.textContent = 'Pause';
+                // change icon to pause
+                icon.innerHTML = '<path d="M6 5h4v14H6zM14 5h4v14h-4z"/>';
+            } else {
+                video.pause();
+                btn.setAttribute('aria-pressed', 'false');
+                btnText.textContent = 'Play';
+                icon.innerHTML = '<path d="M8 5v14l11-7z"/>';
+            }
+        });
+    </script>
+@endpush

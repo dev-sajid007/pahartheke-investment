@@ -21,6 +21,7 @@
     <link href="https://cdn.jsdelivr.net/npm/summernote@0.9.0/dist/summernote.min.css" rel="stylesheet">
 
 
+
     <!-- Scripts -->
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
@@ -60,6 +61,7 @@
             });
         });
     </script>
+    @stack('scripts')
 </body>
 
 </html>
