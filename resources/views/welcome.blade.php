@@ -4,40 +4,12 @@
 @section('content')
     <!-- HERO -->
     <header class="hero">
-        <div class="container">
-            <div class="row gy-4 align-items-center">
-                <div class="col-lg-7 text-center text-lg-start">
-                    <h1 class="display-5">{{ $heroSection->title }}</h1>
-                    <p class="lead text-white-50">{{ $heroSection->subtitle }}</p>
-
-
-                    <p class="lead text-white-50">{{ $heroSection->description }}</p>
-
-                    {{-- <ul class="lead-list">
-                        <li><i class="fa-solid fa-check-circle"></i> Halal Investment — Ethical, Shariah-compliant
-                            opportunities</li>
-                        <li><i class="fa-solid fa-check-circle"></i> Safe Food Market Leader — Strong consumer trust &
-                            demand</li>
-                        <li><i class="fa-solid fa-check-circle"></i> High Growth Potential — Up to 25% ROI on selected
-                            investments</li>
-                        <li><i class="fa-solid fa-check-circle"></i> Sustainable & Zero-Emission Agro Processing Hub —
-                            The future of food production</li>
-                    </ul> --}}
-
-                    <div class="mt-4">
-                        <a class="btn btn-cta btn-lg me-2" href="{{ $heroSection->buttonlink}}"><i
-                                class="fa-solid fa-hand-holding-dollar me-2"></i> {{ $heroSection->button_text }}</a>
-                        <a class="btn btn-outline-light btn-lg" href="#facts"><i class="fa-solid fa-file-lines me-2"></i>
-                            View Fact Sheet</a>
-                    </div>
-                </div>
-
-                <div class="col-lg-5">
-                  
-                        <img style="width: 450px;height:250px"  src="{{asset( "storage/".$heroSection->image) }}" alt="">
-                   
-                </div>
-            </div> <!-- row -->
+        <!-- Video Section -->
+        <div class="lg:w-5/12">
+            <video class="w-full h-auto rounded-lg shadow-lg" controls>
+                <source src="{{ asset('storage/'video.mp4 . $heroSection->video) }}" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
         </div>
     </header>
 
